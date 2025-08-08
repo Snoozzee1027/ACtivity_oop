@@ -1,0 +1,38 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter size of matrix (N >= 3): ");
+        int n = int.Parse(Console.ReadLine());
+
+        int[,] matrix = new int[n, n]; // Create NxN matrix
+
+        // Ask user to input values for the matrix
+        Console.WriteLine("Enter the matrix values:");
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i, j] = int.Parse(Console.ReadLine());
+            }
+        }
+
+        int leftToRight = 0; // Top-left to bottom-right
+        int rightToLeft = 0; // Top-right to bottom-left
+
+        // Calculate the sums of both diagonals
+        for (int i = 0; i < n; i++)
+        {
+            leftToRight += matrix[i, i];
+            rightToLeft += matrix[i, n - 1 - i];
+        }
+
+        // Get the absolute difference
+        int difference = leftToRight - rightToLeft;
+        if (difference < 0) difference = difference * -1;
+
+        Console.WriteLine("Diagonal Difference: " + difference);
+    }
+}
