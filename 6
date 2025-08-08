@@ -1,0 +1,58 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        string[] contacts = new string[15];
+        string[] unique = new string[15];
+        int uniqueCount = 0;
+
+        // Input 15 contact names
+        Console.WriteLine("Enter 15 contact names:");
+        for (int i = 0; i < 15; i++)
+        {
+            contacts[i] = Console.ReadLine().ToLower(); // Make all lowercase
+        }
+
+        // Remove duplicates
+        for (int i = 0; i < 15; i++)
+        {
+            bool isDuplicate = false;
+            for (int j = 0; j < uniqueCount; j++)
+            {
+                if (contacts[i] == unique[j])
+                {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (!isDuplicate)
+            {
+                unique[uniqueCount] = contacts[i];
+                uniqueCount++;
+            }
+        }
+
+        // Simple bubble sort
+        for (int i = 0; i < uniqueCount - 1; i++)
+        {
+            for (int j = i + 1; j < uniqueCount; j++)
+            {
+                if (string.Compare(unique[i], unique[j]) > 0)
+                {
+                    string temp = unique[i];
+                    unique[i] = unique[j];
+                    unique[j] = temp;
+                }
+            }
+        }
+
+        // Output
+        Console.WriteLine("\nSorted Unique Names:");
+        for (int i = 0; i < uniqueCount; i++)
+        {
+            Console.WriteLine(unique[i]);
+        }
+    }
+}
