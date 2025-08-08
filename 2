@@ -1,0 +1,44 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Dictionary to store unique dates and their corresponding events
+        Dictionary<DateTime, string> events = new Dictionary<DateTime, string>();
+
+        // Input: Collect 5 events with valid, unique dates
+        while (events.Count < 5)
+        {
+            Console.Write("Enter event name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Enter event date (MM/DD/YYYY): ");
+            DateTime date;
+            
+            // Validate date format
+            if (DateTime.TryParse(Console.ReadLine(), out date))
+            {
+                if (!events.ContainsKey(date))
+                {
+                    events[date] = name;
+                }
+                else
+                {
+                    Console.WriteLine("This date already has an event. Try another date.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid date format. Try again.");
+            }
+        }
+
+        // Output: Events sorted by date
+        Console.WriteLine("\nEvents Sorted by Date:");
+        foreach (var e in events.OrderBy(e => e.Key))
+        {
+            Console.WriteLine($"{e.Key.ToShortDateString()} - {e.Value}");
+        }
+    }
+}
