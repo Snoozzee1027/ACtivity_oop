@@ -1,0 +1,52 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        string[] books = new string[10];     // Store book names
+        int[] quantities = new int[10];      // Store book quantities
+        int count = 0;
+
+        // Step 1: Add books
+        Console.WriteLine("Add books to inventory (10 books):");
+        for (int i = 0; i < 10; i++)
+        {
+            Console.Write("Book name: ");
+            books[i] = Console.ReadLine();
+            Console.Write("Quantity: ");
+            quantities[i] = int.Parse(Console.ReadLine());
+            count++;
+        }
+
+        // Step 2: Search and update
+        Console.Write("\nSearch for a book to update: ");
+        string search = Console.ReadLine();
+        bool found = false;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (books[i].ToLower() == search.ToLower())
+            {
+                found = true;
+                Console.WriteLine("Book found. Current quantity: " + quantities[i]);
+                Console.Write("Enter new quantity: ");
+                quantities[i] = int.Parse(Console.ReadLine());
+                Console.WriteLine("Quantity updated.");
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            Console.WriteLine("Book not found.");
+        }
+
+        // Step 3: Display full inventory
+        Console.WriteLine("\nBook Inventory:");
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine(books[i] + " - " + quantities[i]);
+        }
+    }
+}
