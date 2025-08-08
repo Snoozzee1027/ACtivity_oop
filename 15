@@ -1,0 +1,42 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] numbers = new int[15]; // At least 10 numbers
+        int k;
+
+        // Input numbers
+        Console.WriteLine("Enter 15 numbers:");
+        for (int i = 0; i < 15; i++)
+        {
+            numbers[i] = int.Parse(Console.ReadLine());
+        }
+
+        // Input window size
+        Console.Write("Enter window size (k): ");
+        k = int.Parse(Console.ReadLine());
+
+        if (k > 15)
+        {
+            Console.WriteLine("Window size must be <= 15");
+            return;
+        }
+
+        // Compute and display sums
+        Console.WriteLine("\nSliding Window Sums:");
+        for (int i = 0; i <= 15 - k; i++)
+        {
+            int sum = 0;
+
+            // Add k elements starting from i
+            for (int j = 0; j < k; j++)
+            {
+                sum += numbers[i + j];
+            }
+
+            Console.WriteLine("Window " + (i + 1) + ": " + sum);
+        }
+    }
+}
