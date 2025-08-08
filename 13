@@ -1,0 +1,30 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] durations = new int[10];   // Store durations in seconds
+
+        // Input: 10 durations
+        Console.WriteLine("Enter 10 durations in seconds:");
+        for (int i = 0; i < 10; i++)
+        {
+            durations[i] = int.Parse(Console.ReadLine());
+        }
+
+        // Convert and display each as HH:MM:SS
+        Console.WriteLine("\nSeconds | HH:MM:SS");
+        for (int i = 0; i < 10; i++)
+        {
+            int hours = durations[i] / 3600;
+            int minutes = (durations[i] % 3600) / 60;
+            int seconds = durations[i] % 60;
+
+            Console.WriteLine("   " + durations[i] + "   |  " +
+                hours.ToString("D2") + ":" +
+                minutes.ToString("D2") + ":" +
+                seconds.ToString("D2"));
+        }
+    }
+}
