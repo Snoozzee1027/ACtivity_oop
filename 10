@@ -1,0 +1,64 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] scores = new int[11]; // Store 10 original scores + 1 new
+        int count = 10;
+
+        // Input initial scores
+        Console.WriteLine("Enter 10 scores:");
+        for (int i = 0; i < 10; i++)
+        {
+            scores[i] = int.Parse(Console.ReadLine());
+        }
+
+        // Sort scores in descending order using bubble sort
+        for (int i = 0; i < count - 1; i++)
+        {
+            for (int j = 0; j < count - i - 1; j++)
+            {
+                if (scores[j] < scores[j + 1])
+                {
+                    int temp = scores[j];
+                    scores[j] = scores[j + 1];
+                    scores[j + 1] = temp;
+                }
+            }
+        }
+
+        // Display current leaderboard
+        Console.WriteLine("\nCurrent Leaderboard:");
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine("Rank " + (i + 1) + ": " + scores[i]);
+        }
+
+        // Get new score from user
+        Console.Write("\nEnter new score: ");
+        scores[10] = int.Parse(Console.ReadLine());
+        count++;
+
+        // Sort again with the new score
+        for (int i = 0; i < count - 1; i++)
+        {
+            for (int j = 0; j < count - i - 1; j++)
+            {
+                if (scores[j] < scores[j + 1])
+                {
+                    int temp = scores[j];
+                    scores[j] = scores[j + 1];
+                    scores[j + 1] = temp;
+                }
+            }
+        }
+
+        // Display updated leaderboard
+        Console.WriteLine("\nUpdated Leaderboard:");
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine("Rank " + (i + 1) + ": " + scores[i]);
+        }
+    }
+}
