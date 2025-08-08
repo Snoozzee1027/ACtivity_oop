@@ -1,0 +1,36 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Dictionary to store student names and their scores
+        Dictionary<string, int> students = new Dictionary<string, int>();
+
+        // Input: Get 10 student names and scores
+        for (int i = 0; i < 10; i++)
+        {
+            Console.Write("Enter student name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Enter student score: ");
+            int score = int.Parse(Console.ReadLine());
+
+            students[name] = score; // Store in dictionary
+        }
+
+        // Sort students by score (descending), then by name (alphabetical)
+        var topStudents = students
+            .OrderByDescending(s => s.Value)
+            .ThenBy(s => s.Key)
+            .Take(3); // Get top 3 students
+
+        // Output top 3 ranked students
+        Console.WriteLine("\nTop 3 Students:");
+        int rank = 1;
+        foreach (var student in topStudents)
+        {
+            Console.WriteLine($"Rank {rank++}: {student.Key} - {student.Value}");
+        }
+    }
+}
