@@ -1,0 +1,36 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Original array
+        int[] array = new int[10];
+
+        Console.WriteLine("Enter 10 integers:");
+        for (int i = 0; i < 10; i++)
+        {
+            array[i] = int.Parse(Console.ReadLine());
+        }
+
+        // Input: How many positions to shift
+        Console.Write("Enter value of k: ");
+        int k = int.Parse(Console.ReadLine());
+
+        // Handle k greater than array length
+        k = k % array.Length;
+
+        // Create new array for shifted result
+        int[] shifted = new int[10];
+
+        // Shift logic
+        for (int i = 0; i < 10; i++)
+        {
+            shifted[(i + k) % 10] = array[i];
+        }
+
+        // Output: Show both original and shifted array
+        Console.WriteLine("\nOriginal Array: " + string.Join(", ", array));
+        Console.WriteLine("Shifted Array: " + string.Join(", ", shifted));
+    }
+}
