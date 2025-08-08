@@ -1,0 +1,100 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Create a list of 16 cards (A-H each appears twice)
+        string[] letters = new string[16] {
+            "A","A","B","B","C","C","D","D",
+            "E","E","F","F","G","G","H","H"
+        };
+        string[,] board = new string[4, 4];   // 4x4 game board
+        bool[,] matched = new bool[4, 4];     // Track matched positions
+
+        // Shuffle the cards randomly
+        Random rnd = new Random();
+        for (int i = 0; i < 16; i++)
+        {
+            int j = rnd.Next(16);
+            string temp = letters[i];
+            letters[i] = letters[j];
+            letters[j] = temp;
+        }
+
+        // Fill the board with shuffled letters
+        int index = 0;
+        for (int r = 0; r < 4; r++)
+        {
+            for (int c = 0; c < 4; c++)
+            {
+                board[r, c] = letters[index];
+                index++;
+            }
+        }
+
+        int totalMatches = 0;
+
+        // Keep asking the player to pick cards until all 8 matches are found
+        while (totalMatches < 8)
+        {
+            ShowBoard(board, matched); // Display the current board
+
+            // Ask user for first pick
+            Console.Write("Pick first (row col): ");
+            int r1 = int.Parse(Console.ReadLine());
+            int c1 = int.Parse(Console.ReadLine());
+
+            // Ask user for second pick
+            Console.Write("Pick second (row col): ");
+            int r2 = int.Parse(Console.ReadLine());
+            int c2 = int.Parse(Console.ReadLine());
+
+            // Check if the picked cards are valid and not already matched
+            if (matched[r1, c1] || matched[r2, c2] || (r1 == r2 && c1 == c2))
+            {
+                Console.WriteLine("Invalid pick. Try again.");
+                continue;
+            }
+
+            // Show the letters
+            Console.WriteLine("You picked: " + board[r1, c1] + " and " + board[r2, c2]);
+
+            // Check if the picks match
+            if (board[r1, c1] == board[r2, c2])
+            {
+                Console.WriteLine("Match!");
+                matched[r1, c1] = true;
+                matched[r2, c2] = true;
+                totalMatches++;
+            }
+            else
+            {
+                Console.WriteLine("Not a match.");
+            }
+        }
+
+        Console.WriteLine("You matched all pairs!");
+    }
+
+    // Function to show the board
+    static void ShowBoard(string[,] board, bool[,] matched)
+    {
+        Console.WriteLine("\nBoard:");
+        for (int r = 0; r < 4; r++)
+        {
+            for (int c = 0; c < 4; c++)
+            {
+                if (matched[r, c])
+                {
+                    Console.Write(board[r, c] + " ");
+                }
+                else
+                {
+                    Console.Write("* ");
+                }
+            }
+            Console.WriteLine();
+        }
+    }
+}
