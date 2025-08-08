@@ -1,0 +1,30 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] numbers = new int[10];     // Original numbers
+        int[] results = new int[10];     // After expression
+
+        // Input: 10 integers
+        Console.WriteLine("Enter 10 integers:");
+        for (int i = 0; i < 10; i++)
+        {
+            numbers[i] = int.Parse(Console.ReadLine());
+        }
+
+        // Apply formula (2*x + 3) % 5 manually
+        for (int i = 0; i < 10; i++)
+        {
+            results[i] = (2 * numbers[i] + 3) % 5;
+        }
+
+        // Display results
+        Console.WriteLine("\nOriginal | Evaluated");
+        for (int i = 0; i < 10; i++)
+        {
+            Console.WriteLine("   " + numbers[i] + "     |     " + results[i]);
+        }
+    }
+}
