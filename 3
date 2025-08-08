@@ -1,0 +1,41 @@
+﻿using System;
+
+class Program
+{
+    static void Main()
+    {
+        // List to hold age entries
+        List<int> ages = new List<int>();
+
+        // Input: Get 20 age values
+        for (int i = 0; i < 20; i++)
+        {
+            Console.Write($"Enter age #{i + 1}: ");
+            ages.Add(int.Parse(Console.ReadLine()));
+        }
+
+        // Calculations
+        double average = ages.Average();
+        int min = ages.Min();
+        int max = ages.Max();
+
+        // Count per age bracket
+        int under18 = ages.Count(a => a < 18);
+        int from18To35 = ages.Count(a => a >= 18 && a <= 35);
+        int from36To60 = ages.Count(a => a >= 36 && a <= 60);
+        int over60 = ages.Count(a => a > 60);
+
+        // Output the statistics
+        Console.WriteLine("\nSurvey Results:");
+        Console.WriteLine($"Average Age: {average}");
+        Console.WriteLine($"Minimum Age: {min}");
+        Console.WriteLine($"Maximum Age: {max}");
+
+        // Output age bracket counts
+        Console.WriteLine("\nAge Brackets:");
+        Console.WriteLine($"<18: {under18}");
+        Console.WriteLine($"18-35: {from18To35}");
+        Console.WriteLine($"36-60: {from36To60}");
+        Console.WriteLine($">60: {over60}");
+    }
+}
